@@ -1,8 +1,5 @@
-import { createClient } from "../utils/supabase/server";
+import Post from "../components/Post";
 
-export default async function Posts() {
-  const supabase = await createClient();
-  const { data: posts } = await supabase.from("posts").select();
-
-  return <pre>{JSON.stringify(posts, null, 2)}</pre>;
+export default function Posts() {
+  return <Post />;
 }
