@@ -13,8 +13,22 @@ class SupabaseApi {
       throw new Error(`Error fetching posts: ${error.message}`);
     }
 
-    // 데이터 타입이 확실히 PostsType[]와 맞는지 확인(타입 단언)
-    return posts as PostsType[];
+    return posts;
+  }
+
+  async getPostById(id: number): Promise<PostsType[]> {
+    const supabase = await createClient();
+    const { data: post, error } = await supabase
+      .from("posts")
+      .select()
+      .eq("id", id);
+    // .single();
+
+    if (error) {
+      throw new Error(`Error fetching posts: ${error.message}`);
+    }
+
+    return post;
   }
 }
 

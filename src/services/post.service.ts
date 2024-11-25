@@ -7,6 +7,10 @@ class PostService {
   async getAll(): Promise<PostsType[]> {
     return await this.supabaseApi.getPost();
   }
+
+  async getById(id: number): Promise<PostsType[]> {
+    return await this.supabaseApi.getPostById(id);
+  }
 }
 
 export default PostService;
