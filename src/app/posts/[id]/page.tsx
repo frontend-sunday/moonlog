@@ -2,9 +2,18 @@ import PostService from "@/services/post.service";
 import dayjs from "dayjs";
 import Image from "next/image";
 
-const PostDetailPage = async ({ params }: { params: { id: string } }) => {
+const PostDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const postService = new PostService();
-  const paramId = params.id.split("-")[1];
+  // console.log(typeof params.id);
+  // console.log(params);
+
+  const paramId = (await params).id.split("-")[1];
+  // const { id } = await params;
+  // const paramId = id.split("-")[1];
   const post = await postService.getById(Number(paramId));
 
   const formattedDate = dayjs(post[0].created_at).format(
