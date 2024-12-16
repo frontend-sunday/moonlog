@@ -20,12 +20,15 @@ const PostDetailPage = async ({
     "YYYY년 MM월 DD일 HH:mm"
   );
 
+  const emptyImage =
+    "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fparquet-empty-white-wall-27457060.jpg&type=sc960_832";
+
   return post.map((item) => (
-    <div className="container mx-auto px-4 py-8">
+    <div key={item.id} className="container mx-auto px-4 py-8">
       <article className="max-w-3xl mx-auto bg-white shadow-md overflow-hidden">
         <div className="relative aspect-video w-full">
           <Image
-            src={item.thumbnail}
+            src={item.thumbnail ? item.thumbnail : emptyImage}
             alt={item.title}
             layout="fill"
             objectFit="cover"
