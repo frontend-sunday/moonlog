@@ -7,7 +7,7 @@ export default async function Posts() {
   const posts = await postService.getAll();
 
   return (
-    <div className="container bg-gray-100 w-100 h-screen mx-auto px-4 py-8">
+    <div className="container bg-white w-100 h-screen mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-center">블로그 포스트</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {posts.map((post) => (
