@@ -2,17 +2,17 @@ import PostService from "@/services/post.service";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Posts() {
+export default async function Post() {
   const postService = new PostService();
   const posts = await postService.getAll();
 
   return (
-    <div className="container bg-white w-100 h-screen mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-center">블로그 포스트</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {posts.map((post) => (
           <Link
-            href={{ pathname: `/posts/post-${post.id}` }}
+            href={`/posts/${post.id}`}
             key={post.id}
             className="block group"
           >
