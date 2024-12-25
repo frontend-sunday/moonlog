@@ -1,6 +1,7 @@
 import PostService from "@/services/post.service";
 import dayjs from "dayjs";
 import Image from "next/image";
+import CustomMDX from "@/components/mdx-remote";
 
 const PostDetailPage = async ({
   params,
@@ -8,12 +9,7 @@ const PostDetailPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const postService = new PostService();
-  // console.log(typeof params.id);
-  // console.log(params);
-
   const paramId = (await params).id.split("-")[1];
-  // const { id } = await params;
-  // const paramId = id.split("-")[1];
   const post = await postService.getById(Number(paramId));
 
   const formattedDate = dayjs(post[0].created_at).format(
@@ -43,7 +39,10 @@ const PostDetailPage = async ({
           <time className="text-sm text-gray-500 mb-4 block">
             {formattedDate}
           </time>
-          <div className="prose max-w-none">{item.content}</div>
+
+          <div className="prose max-w-none">
+            <CustomMDX source={item.content} />
+          </div>
         </div>
       </article>
     </div>

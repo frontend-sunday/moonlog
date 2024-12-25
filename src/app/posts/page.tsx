@@ -1,6 +1,7 @@
 import PostService from "@/services/post.service";
 import Image from "next/image";
 import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 export default async function Posts() {
   const postService = new PostService();
@@ -32,7 +33,9 @@ export default async function Posts() {
                   {post.title}
                 </h2>
                 <p className="text-gray-600 line-clamp-3">{post.subtitle}</p>
-                <p className="text-gray-600 line-clamp-3">{post.content}</p>
+                <p className="text-gray-600 line-clamp-3">
+                  <MDXRemote source={post.content} />
+                </p>
               </div>
             </article>
           </Link>
